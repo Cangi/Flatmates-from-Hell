@@ -26,7 +26,7 @@
 .vs/
 .DS_Store
 .idea/
-*.meta
+
 # Gradle cache directory
 .gradle/
 

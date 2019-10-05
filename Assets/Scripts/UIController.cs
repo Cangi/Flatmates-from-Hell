@@ -23,8 +23,15 @@ public class UIController : MonoBehaviour
         time -= Time.deltaTime;
         minutes = Mathf.RoundToInt(time / 60) - 1;
         seconds = Mathf.RoundToInt(time % 60);
+        if (seconds < 10)
+        {
+            timerText.text = "Time: " + minutes + ":0" + seconds;
+        }
+        else
+        {
+            timerText.text = "Time: " + minutes + ":" + seconds;
+        }
 
-        timerText.text = "Time: " + minutes + ":" + seconds;
         cleanLevelText.text = "Clean Level: " + cleanLevel;
 
     }
