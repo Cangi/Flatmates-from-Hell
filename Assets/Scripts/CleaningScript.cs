@@ -69,7 +69,7 @@ public class CleaningScript : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !cleaning)
             {
                 cleaning = true;
 
