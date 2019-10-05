@@ -10,6 +10,8 @@ public class CleaningScript : MonoBehaviour
     public GameObject spacebar;
     public int cleaningTime = 5;
     public GameObject cleaned;
+    public Sprite cleanSprite;
+    public Sprite dirtySprite;
     private int timeLeft;
     private GameObject buttonInstance;
     private GameObject cleanedInstance;
@@ -20,16 +22,25 @@ public class CleaningScript : MonoBehaviour
     private float pulsationThreshold = 2;
     private Dictionary<char, Sprite> keyboard;
     private char randomChar;
+    private bool dirty;
+
+    public void dirtyUp()
+    {
+        dirty = true;
+        GetComponent<SpriteRenderer>().sprite = dirtySprite;
+    }
     
-
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        buttonInstance = Instantiate(spacebar, new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
-        startScale = buttonInstance.transform.localScale;
-        buttonInstanceSprite = buttonInstance.GetComponent<SpriteRenderer>();
-        pulsating = true;
-        inTrigger = true;
+        if (dirty)
+        {
+            buttonInstance = Instantiate(spacebar, new Vector3(transform.position.x, transform.position.y, -1),
+                Quaternion.identity);
+            startScale = buttonInstance.transform.localScale;
+            buttonInstanceSprite = buttonInstance.GetComponent<SpriteRenderer>();
+            pulsating = true;
+            inTrigger = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -55,6 +66,17 @@ public class CleaningScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // TEST
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            GameObject.Find("stove").GetComponent<CleaningScript>().dirtyUp();
+        }
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            GameObject.Find("bin").GetComponent<CleaningScript>().dirtyUp();
+        }
+        // END TEST
+        
         if (inTrigger)
         {
             if (pulsating)
@@ -100,10 +122,12 @@ public class CleaningScript : MonoBehaviour
         buttonInstanceSprite.sprite = keyboard[randomChar];
 
         timeLeft--;
-        if (timeLeft == 0)
+        if (timeLeft == 0) // CLEANED! 
         {
             removeButton();
+            dirty = false;
             cleanedInstance = Instantiate(cleaned, new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
+            GetComponent<SpriteRenderer>().sprite = cleanSprite;
             StartCoroutine(turnOffCleaned());
         }
     }
