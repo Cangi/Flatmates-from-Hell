@@ -314,7 +314,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
@@ -624,7 +624,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
@@ -647,16 +647,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5157901513793123912, guid: 8e88296679ca6480cbca175c48ca52d9,
-        type: 3}
-      propertyPath: timerText
-      value: 
-      objectReference: {fileID: 832352228}
-    - target: {fileID: 5157901513793123912, guid: 8e88296679ca6480cbca175c48ca52d9,
-        type: 3}
-      propertyPath: cleanLevelText
-      value: 
-      objectReference: {fileID: 912544324}
     - target: {fileID: 3662468977918821819, guid: 8e88296679ca6480cbca175c48ca52d9,
         type: 3}
       propertyPath: m_Name
@@ -731,6 +721,38 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RenderingPath
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157901513793123912, guid: 8e88296679ca6480cbca175c48ca52d9,
+        type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 832352228}
+    - target: {fileID: 5157901513793123912, guid: 8e88296679ca6480cbca175c48ca52d9,
+        type: 3}
+      propertyPath: cleanLevelText
+      value: 
+      objectReference: {fileID: 912544324}
+    - target: {fileID: 6951139223489514708, guid: 8e88296679ca6480cbca175c48ca52d9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 282.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 856666436388739787, guid: 8e88296679ca6480cbca175c48ca52d9,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 701547466873244739b80b7840e5780b,
+        type: 2}
+    - target: {fileID: 2985340508620206261, guid: 8e88296679ca6480cbca175c48ca52d9,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 701547466873244739b80b7840e5780b,
+        type: 2}
+    - target: {fileID: 2985340508620206261, guid: 8e88296679ca6480cbca175c48ca52d9,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e88296679ca6480cbca175c48ca52d9, type: 3}

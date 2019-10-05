@@ -7,22 +7,22 @@ TextureImporter:
     second: oven_dirty
   - first:
       213: -3099144887811292925
-    second: assets_kitchen_v2_0
+    second: stove_dirty
   - first:
       213: -4615623368704208675
-    second: assets_kitchen_v2_1
+    second: stove_clean
   - first:
       213: -3351003760868422602
-    second: assets_kitchen_v2_2
+    second: counter
   - first:
       213: -9007083233989365888
     second: assets_kitchen_v2_3
   - first:
       213: 1794766378621527711
-    second: assets_kitchen_v2_4
+    second: fridge_dirty
   - first:
       213: 4168816674943681774
-    second: assets_kitchen_v2_5
+    second: fridge_clean
   - first:
       213: 2794838895880204509
     second: assets_kitchen_v2_6
@@ -37,19 +37,19 @@ TextureImporter:
     second: assets_kitchen_v2_9
   - first:
       213: 5748505580637816796
-    second: assets_kitchen_v2_10
+    second: bin_clean
   - first:
       213: -863890031466389937
     second: assets_kitchen_v2_11
   - first:
       213: -1683407895101457704
-    second: assets_kitchen_v2_12
+    second: micro_clean
   - first:
       213: -2977503662934813925
-    second: assets_kitchen_v2_13
+    second: micro_dirty
   - first:
       213: 9053598142795396891
-    second: assets_kitchen_v2_14
+    second: bin_dirty
   - first:
       213: 3929413415385761407
     second: assets_kitchen_v2_15
@@ -185,7 +185,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: assets_kitchen_v2_0
+      name: stove_dirty
       rect:
         serializedVersion: 2
         x: 68
@@ -193,7 +193,7 @@ TextureImporter:
         width: 228
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -206,7 +206,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_kitchen_v2_1
+      name: stove_clean
       rect:
         serializedVersion: 2
         x: 356
@@ -214,7 +214,7 @@ TextureImporter:
         width: 228
         height: 199
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -227,7 +227,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_kitchen_v2_2
+      name: counter
       rect:
         serializedVersion: 2
         x: 615
@@ -235,7 +235,7 @@ TextureImporter:
         width: 229
         height: 199
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -256,7 +256,7 @@ TextureImporter:
         width: 151
         height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -269,7 +269,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_kitchen_v2_4
+      name: fridge_dirty
       rect:
         serializedVersion: 2
         x: 71
@@ -277,7 +277,7 @@ TextureImporter:
         width: 186
         height: 289
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -290,7 +290,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_kitchen_v2_5
+      name: fridge_clean
       rect:
         serializedVersion: 2
         x: 287
@@ -298,7 +298,7 @@ TextureImporter:
         width: 186
         height: 276
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -319,7 +319,7 @@ TextureImporter:
         width: 151
         height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -340,7 +340,7 @@ TextureImporter:
         width: 89
         height: 167
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -357,11 +357,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 718
-        y: 314
+        y: 315
         width: 180
         height: 98
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -382,7 +382,7 @@ TextureImporter:
         width: 138
         height: 131
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -395,15 +395,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_kitchen_v2_10
+      name: bin_clean
       rect:
         serializedVersion: 2
-        x: 474
+        x: 473
         y: 171
         width: 70
         height: 158
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -424,7 +424,7 @@ TextureImporter:
         width: 55
         height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -437,15 +437,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_kitchen_v2_12
+      name: micro_clean
       rect:
         serializedVersion: 2
-        x: 55
+        x: 54
         y: 100
         width: 184
         height: 114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -458,7 +458,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_kitchen_v2_13
+      name: micro_dirty
       rect:
         serializedVersion: 2
         x: 282
@@ -466,7 +466,7 @@ TextureImporter:
         width: 184
         height: 132
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -479,7 +479,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_kitchen_v2_14
+      name: bin_dirty
       rect:
         serializedVersion: 2
         x: 551
@@ -487,7 +487,7 @@ TextureImporter:
         width: 162
         height: 75
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -508,7 +508,7 @@ TextureImporter:
         width: 70
         height: 89
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
