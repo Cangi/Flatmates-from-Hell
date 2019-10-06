@@ -13,12 +13,14 @@ public class Pathfinding : MonoBehaviour
     private bool walkingBack;
     private int walkingCurrent;
     public float botSpeed = 10.0f;
+    private AIManager aim;
     
     // Start is called before the first frame update
     private void Start()
     {
         data = GameObject.Find("BotPath").GetComponent(typeof(BotPathData)) as BotPathData;
-        calculateOnce = 0;
+        StartCoroutine(readyUp());
+        aim = GameObject.Find("Player").GetComponent<AIManager>();
     }
     
     void Update()
@@ -32,14 +34,7 @@ public class Pathfinding : MonoBehaviour
         }
         
         //END TEST
-        calculateOnce++;
-        if (calculateOnce == 5)
-        {
-            CalculateFinalPath(botStartPos.position, botDestPos.position);
-            walking = true;
-            walkingBack = false;
-            walkingCurrent = 0;
-        }
+        
 
         if (walking)
         {
@@ -63,16 +58,37 @@ public class Pathfinding : MonoBehaviour
                     botDestPos.parent.GetComponent<CleaningScript>().dirtyUp();
                 }
 
-                if (walkingBack && walkingCurrent == -1)
+                if (walkingBack && walkingCurrent == -1) // END OF WALKING
                 {
                     walkingBack = false;
                     walking = false;
+                    StartCoroutine(readyUp());
                 }
             }
         }
 
     }
 
+    IEnumerator readyUp()
+    {
+        yield return new WaitForSeconds(5.0f);
+        var botTarget = aim.reserveATask();
+        if (botTarget)
+        {
+            
+            botDestPos = botTarget.transform.GetChild(0).transform;
+            CalculateFinalPath(botStartPos.position, botDestPos.position);
+            walking = true;
+            walkingCurrent = 0;
+            walkingBack = false;
+        }
+        else
+        {
+            StartCoroutine(readyUp());
+        }
+        
+    }
+    
     public void CalculateFinalPath(Vector3 _start, Vector3 _destination)
     {
         List<CustomTile> discoveredTiles = new List<CustomTile>();

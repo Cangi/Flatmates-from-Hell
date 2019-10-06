@@ -33,6 +33,13 @@ public class BotPathData : MonoBehaviour
         map2 = GameObject.FindObjectsOfType<Tilemap>()[1];
         tiles = map.GetTilesBlock(map.cellBounds);
         tileDiameter = map.layoutGrid.cellSize.x;
+        
+        if (map2.cellBounds.xMax + map2.cellBounds.yMax > map.cellBounds.xMax + map.cellBounds.yMax)
+        {
+            Tilemap backup = map;
+            map = map2;
+            map2 = backup;
+        }
 
         for (int n = map.cellBounds.xMin; n < map.cellBounds.xMax; n++)
         {

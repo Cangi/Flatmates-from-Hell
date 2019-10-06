@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AIManager : MonoBehaviour
 {
@@ -9,12 +11,13 @@ public class AIManager : MonoBehaviour
     public List<GameObject> completedTasks;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         availableTasks = new List<GameObject>();
         reservedTasks = new List<GameObject>();
         completedTasks = new List<GameObject>();
     }
+
 
     public void addAvailableTask(GameObject _obj)
     {
@@ -25,7 +28,7 @@ public class AIManager : MonoBehaviour
     {
         if (availableTasks.Count > 0)
         {
-            GameObject reservedObject = availableTasks[0];
+            GameObject reservedObject = availableTasks[Random.Range(0, availableTasks.Count)];
             availableTasks.Remove(reservedObject);
             reservedTasks.Add(reservedObject);
             return reservedObject;

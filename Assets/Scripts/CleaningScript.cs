@@ -24,11 +24,12 @@ public class CleaningScript : MonoBehaviour
     private char randomChar;
     private bool dirty;
     private UIController uic;
-
+    private AIManager aim;
     public void dirtyUp()
     {
         dirty = true;
         GetComponent<SpriteRenderer>().sprite = dirtySprite;
+        aim.notifyCompletion(gameObject);
         uic.changeCleanliness();
     }
 
@@ -69,8 +70,9 @@ public class CleaningScript : MonoBehaviour
         }
 
         timeLeft = cleaningTime;
-
         uic = GameObject.Find("Player").GetComponent<UIController>();
+        aim = GameObject.Find("Player").GetComponent<AIManager>();
+        aim.addAvailableTask(gameObject);
     }
 
     // Update is called once per frame
@@ -139,6 +141,7 @@ public class CleaningScript : MonoBehaviour
             cleanedInstance = Instantiate(cleaned, new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
             GetComponent<SpriteRenderer>().sprite = cleanSprite;
             GameObject.Find("Player").GetComponent<UIController>().changeCleanliness();
+            aim.notifyCleanedUp(gameObject);
             StartCoroutine(turnOffCleaned());
         }
     }

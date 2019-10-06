@@ -23,7 +23,12 @@ public class UIController : MonoBehaviour
 
     private List<CleaningScript> cleaningScripts;
 
-    
+    private void Awake()
+    {
+        gameObject.AddComponent(typeof(AIManager));
+
+    }
+
     private void Start()
     {
         
