@@ -151,16 +151,15 @@ public class Pathfinding : MonoBehaviour
         List<CustomTile> path = new List<CustomTile>();
 
         CustomTile current = _dest;
-        int seqLen = 0;
         while (current != _cur)
         {
             path.Add(current);
             current = current.prevTile;
-            seqLen++;
         }
+        
+        path.Add(_cur);
 
         path.Reverse();
-
         pathToDestination = path;
     }
 }
