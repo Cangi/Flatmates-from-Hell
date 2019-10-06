@@ -8,16 +8,20 @@ public class Pathfinding : MonoBehaviour
     public Transform botDestPos;
     public List<CustomTile> pathToDestination;
     public BotPathData data;
+    private int calculateOnce;
+    
     // Start is called before the first frame update
     private void Start()
     {
         data = GameObject.Find("BotPath").GetComponent(typeof(BotPathData)) as BotPathData;
+        calculateOnce = 0;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        CalculateFinalPath(botStartPos.position, botDestPos.position);
+        calculateOnce++;
+        if (calculateOnce == 5)
+            CalculateFinalPath(botStartPos.position, botDestPos.position);
     }   
     
     public void CalculateFinalPath(Vector3 _start, Vector3 _destination)
@@ -27,16 +31,16 @@ public class Pathfinding : MonoBehaviour
         
         CustomTile current = data.TileFromWorldPos(_start);
         CustomTile dest = data.TileFromWorldPos(_destination);
-        
+
         discoveredTiles.Add(current);
 
-        while (discoveredTiles.Count > 0)
+        while (discoveredTiles.Count > 0)    
         {
             CustomTile presentTile = discoveredTiles[0];
 
             for (int i = 1; i < discoveredTiles.Count; ++i)
             {
-                if (discoveredTiles[i].GetF() <= presentTile.GetF() && discoveredTiles[i].H < presentTile.H)
+                if (discoveredTiles[i].F < presentTile.F || discoveredTiles[i].F == presentTile.F && discoveredTiles[i].H < presentTile.H)
                 {
                     presentTile = discoveredTiles[i];
                 }
@@ -50,18 +54,18 @@ public class Pathfinding : MonoBehaviour
                 GetSequence(current, dest);
             }
 
-            foreach (CustomTile curNeighbour in data.GetNeighbours(current))
+            foreach (CustomTile curNeighbour in data.GetNeighbours(presentTile))
             {
                 if (curNeighbour.isObstacle == true || discardedTiles.Contains(curNeighbour))
                     continue;
 
                 int cost = current.G + Mathf.Abs(current.cellPos.x - curNeighbour.cellPos.x) + Mathf.Abs(current.cellPos.y - curNeighbour.cellPos.y);
-
                 if (cost < curNeighbour.G || !discoveredTiles.Contains(curNeighbour))
                 {
                     curNeighbour.G = cost;
                     curNeighbour.H = Mathf.Abs(curNeighbour.cellPos.x - dest.cellPos.x) + Mathf.Abs(curNeighbour.cellPos.y - dest.cellPos.y);
-                    curNeighbour.prevTile = current;
+                    
+                    curNeighbour.prevTile = presentTile;
 
                     if (!discoveredTiles.Contains(curNeighbour))
                     {
@@ -78,11 +82,12 @@ public class Pathfinding : MonoBehaviour
         List<CustomTile> path = new List<CustomTile>();
 
         CustomTile current = _dest;
-
+        int seqLen = 0;
         while (current != _cur)
         {
             path.Add(current);
             current = current.prevTile;
+            seqLen++;
         }
 
         path.Reverse();
