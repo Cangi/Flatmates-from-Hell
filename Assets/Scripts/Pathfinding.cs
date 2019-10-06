@@ -16,6 +16,8 @@ public class Pathfinding : MonoBehaviour
     private AIManager aim;
     public float waitMin = 4.0f;
     public float waitMax = 8.0f;
+    public GameObject dust;
+    private GameObject dustInstance;
     private Animator anim;
     
     // Start is called before the first frame update
@@ -96,22 +98,35 @@ public class Pathfinding : MonoBehaviour
                     walkingCurrent--;
                 }
 
-                if (!walkingBack && walkingCurrent == pathToDestination.Count)
+                if (!walkingBack && walkingCurrent == pathToDestination.Count) // DIRTIED UP
                 {
-                    walkingBack = true;
-                    walkingCurrent--;
-                    botDestPos.parent.GetComponent<CleaningScript>().dirtyUp();
+                    dustInstance = Instantiate(dust, transform.position, Quaternion.identity);
+                    walking = false;
+                    //LOGIC IN REMOVE DUST
+                    StartCoroutine(removeDust());
                 }
 
                 if (walkingBack && walkingCurrent == -1) // END OF WALKING
                 {
                     walkingBack = false;
                     walking = false;
+                    resetAnims();
                     StartCoroutine(readyUp());
                 }
             }
         }
 
+    }
+
+    IEnumerator removeDust()
+    {
+        yield return new WaitForSeconds(1.0f);
+        walking = true;
+        walkingBack = true;
+        walkingCurrent--;
+        botDestPos.parent.GetComponent<CleaningScript>().dirtyUp();
+        
+        Destroy(dustInstance);
     }
 
     public void resetAnims()
