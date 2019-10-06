@@ -14,6 +14,8 @@ public class Pathfinding : MonoBehaviour
     private int walkingCurrent;
     public float botSpeed = 10.0f;
     private AIManager aim;
+    public float waitMin = 4.0f;
+    public float waitMax = 8.0f;
     
     // Start is called before the first frame update
     private void Start()
@@ -71,7 +73,7 @@ public class Pathfinding : MonoBehaviour
 
     IEnumerator readyUp()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(Random.Range(waitMin, waitMax));
         var botTarget = aim.reserveATask();
         if (botTarget)
         {
@@ -82,10 +84,10 @@ public class Pathfinding : MonoBehaviour
             walkingCurrent = 0;
             walkingBack = false;
         }
-        else
-        {
-            StartCoroutine(readyUp());
-        }
+//        else
+//        {
+//            StartCoroutine(readyUp());
+//        }
         
     }
     

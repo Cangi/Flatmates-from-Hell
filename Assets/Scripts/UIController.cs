@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -50,6 +51,11 @@ public class UIController : MonoBehaviour
 
     public void changeCleanliness()
     {
+        checkDirt();
+    }
+
+    void checkDirt()
+    {
         float count = 0;
         float total = 0;
         foreach (CleaningScript script in cleaningScripts)
@@ -70,8 +76,9 @@ public class UIController : MonoBehaviour
         }
 
         cleanLevel = 100 - (int)((float)(count / total * 100));
+
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -112,12 +119,23 @@ public class UIController : MonoBehaviour
                     closest = dirtyObject;
                 }
             }
+
+            if (dirtyObjects.Count > 0)
+            {
+                arrow.GetChild(0).GetComponent<RawImage>().enabled = true;
+            }
         }
         else
         {
             Vector3 t = character.position - closest.position;
             arrow.transform.right = closest.position - character.position;
-            
+            if (!closest.GetComponent<CleaningScript>().isDirty())
+            {
+                arrow.GetChild(0).GetComponent<RawImage>().enabled = false;
+                dirtyObjects.Remove(closest);
+                closest = null;
+                checkDirt();
+            }
         }
 
 
