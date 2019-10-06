@@ -89,15 +89,13 @@ public class UIController : MonoBehaviour
                 }
             }
         }
-
+    
         cleanLevel = 100 - (int)((float)(count / total * 100));
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        float closestDistance = 999f;
         time -= Time.deltaTime;
         minutes = (int)time / 60;
         seconds = (int)time - minutes * 60;
@@ -126,23 +124,9 @@ public class UIController : MonoBehaviour
             }
         }
 
-        if (closest == null)
+        if (!closest)
         {
-            foreach (Transform dirtyObject in dirtyObjects)
-            {
-                if (Vector3.Distance(character.position, dirtyObject.position) < closestDistance)
-                {
-                    closestDistance = Vector3.Distance(character.position, dirtyObject.position);
-                    closest = dirtyObject;
-                }
-            }
-
-            if (dirtyObjects.Count > 0)
-            {
-                arrowImage.enabled = true;
-                Debug.Log("This one!");
-                Debug.Log(arrowShowing);
-            }
+            findArrow();
         }
         else
         {
@@ -165,10 +149,27 @@ public class UIController : MonoBehaviour
             if (!arrowImage.enabled && dirtyObjects.Count > 0)
             {
                 arrowImage.enabled = true;
-                Debug.Log("That one!");
-                Debug.Log(arrowShowing);
             }
         }
 
     }
+    public void findArrow() {
+        float closestDistance = 999f;
+
+        foreach (Transform dirtyObject in dirtyObjects)
+        {
+            if (Vector3.Distance(character.position, dirtyObject.position) < closestDistance)
+            {
+                closestDistance = Vector3.Distance(character.position, dirtyObject.position);
+                closest = dirtyObject;
+            }
+        }
+
+        if (dirtyObjects.Count > 0)
+        {
+            arrowImage.enabled = true;
+        }
+    }
 }
+
+

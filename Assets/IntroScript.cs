@@ -17,12 +17,17 @@ public class IntroScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!secondStage)
+            var sceneName = SceneManager.GetActiveScene().name;
+            if (!secondStage && sceneName !="Lose" && sceneName != "Win") 
             {
                 secondStage = true;
                 GetComponent<Image>().sprite = secondImage;
-                Text tRef = GameObject.Find("LoseText").GetComponent<Text>();
-                tRef.text = "";
+                var loseText = GameObject.Find("LoseText");
+                if(loseText) {
+                    Text tRef = loseText.GetComponent<Text>(); 
+                    tRef.text = "";
+                }
+                
             }
             else
             {

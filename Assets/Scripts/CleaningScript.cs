@@ -89,17 +89,6 @@ public class CleaningScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TEST
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            GameObject.Find("stove").GetComponent<CleaningScript>().dirtyUp();
-        }
-        if (Input.GetKeyDown(KeyCode.RightShift))
-        {
-            GameObject.Find("bin").GetComponent<CleaningScript>().dirtyUp();
-        }
-        // END TEST
-        
         if (inTrigger)
         {
             if (pulsating)
@@ -153,12 +142,14 @@ public class CleaningScript : MonoBehaviour
             dirty = false;
             cleanedInstance = Instantiate(cleaned, new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
             GetComponent<SpriteRenderer>().sprite = cleanSprite;
-            FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().Stop();
-            FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().clip = goalSound;
-            FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().loop = false;
-            FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().Play();
-            GameObject.Find("Player").GetComponent<UIController>().changeCleanliness();
-            aim.notifyCleanedUp(gameObject);
+            var audio = uic.GetComponent<AudioSource>();
+            audio.Stop();
+            audio.clip = goalSound;
+            audio.loop = false;
+            audio.Play();
+            uic.changeCleanliness();
+            uic.setArrow(true);
+            uic.findArrow();
             StartCoroutine(turnOffCleaned());
         }
     }
@@ -167,6 +158,7 @@ public class CleaningScript : MonoBehaviour
     {
         yield return new WaitForSeconds(0.7f);
         Destroy(cleanedInstance);
+        aim.notifyCleanedUp(gameObject);
     }
     
     void removeButton()

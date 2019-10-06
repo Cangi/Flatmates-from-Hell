@@ -45,6 +45,7 @@ public class Pathfinding : MonoBehaviour
         if (walking)
         {
             float step =  botSpeed * Time.deltaTime; // calculate distance to move
+            Debug.Log(gameObject.name + ' ' + walkingCurrent);
             transform.position = Vector3.MoveTowards(transform.position, pathToDestination[walkingCurrent].worldPos, step);
             
             if (walkingCurrent + 1 != pathToDestination.Count)
