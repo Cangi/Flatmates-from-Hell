@@ -26,6 +26,8 @@ public class CleaningScript : MonoBehaviour
     private bool dirty;
     private UIController uic;
     private AIManager aim;
+    private AudioClip goalSound;
+    private AudioClip cleanSound;
     public void dirtyUp()
     {
         dirty = true;
@@ -70,6 +72,8 @@ public class CleaningScript : MonoBehaviour
         keyboard = new Dictionary<char, Sprite>();
         spacebar = Resources.Load<GameObject>("Buttons/spacebar");
         cleaned = Resources.Load<GameObject>("cleaned");
+        goalSound = Resources.Load<AudioClip>("goal");
+        cleanSound = Resources.Load<AudioClip>("cleanSound");
         var keyboardArray = Resources.LoadAll("Buttons/Keyboard", typeof(Sprite)).Cast<Sprite>().ToArray();
         foreach (var key in keyboardArray)
         {
@@ -113,6 +117,8 @@ public class CleaningScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && !cleaning)
             {
                 cleaning = true;
+                FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().clip = cleanSound;
+                FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().loop = true;
                 FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().Play();
                 generateKey();
 
@@ -148,6 +154,9 @@ public class CleaningScript : MonoBehaviour
             cleanedInstance = Instantiate(cleaned, new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
             GetComponent<SpriteRenderer>().sprite = cleanSprite;
             FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().Stop();
+            FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().clip = goalSound;
+            FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().loop = false;
+            FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().Play();
             GameObject.Find("Player").GetComponent<UIController>().changeCleanliness();
             aim.notifyCleanedUp(gameObject);
             StartCoroutine(turnOffCleaned());
