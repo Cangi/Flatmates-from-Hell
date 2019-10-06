@@ -32,6 +32,7 @@ public class UIController : MonoBehaviour
     public GameObject cleanSlider;
 
    
+    public int winCondition = 90;
 
     private List<Transform> dirtyObjects;
 
@@ -108,7 +109,7 @@ public class UIController : MonoBehaviour
         StaticClass.crossSceneCleanliness = cleanLevel;
         if (time<=0)
         {
-            if (cleanLevel != 100)
+            if (cleanLevel < winCondition)
             {
                 SceneManager.LoadScene("Lose");
             }
