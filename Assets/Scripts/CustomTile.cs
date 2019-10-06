@@ -8,6 +8,11 @@ public class CustomTile
 
     public int G;
     public int H;
+    
+    public int F
+    {
+        get { return G + H;  }
+    }
 
     public Vector3 worldPos;
     public Vector3Int cellPos;
