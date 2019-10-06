@@ -16,6 +16,7 @@ public class Pathfinding : MonoBehaviour
     private AIManager aim;
     public float waitMin = 4.0f;
     public float waitMax = 8.0f;
+    private Animator anim;
     
     // Start is called before the first frame update
     private void Start()
@@ -23,6 +24,7 @@ public class Pathfinding : MonoBehaviour
         data = GameObject.Find("BotPath").GetComponent(typeof(BotPathData)) as BotPathData;
         StartCoroutine(readyUp());
         aim = GameObject.Find("Player").GetComponent<AIManager>();
+        anim = GetComponent<Animator>();
     }
     
     void Update()
@@ -42,6 +44,47 @@ public class Pathfinding : MonoBehaviour
         {
             float step =  botSpeed * Time.deltaTime; // calculate distance to move
             transform.position = Vector3.MoveTowards(transform.position, pathToDestination[walkingCurrent].worldPos, step);
+            
+            if (walkingCurrent + 1 != pathToDestination.Count)
+            {
+                Vector3Int first = pathToDestination[walkingCurrent].cellPos;
+                Vector3Int second = pathToDestination[walkingCurrent + 1].cellPos;
+
+                int verticalDiff = second.y - first.y;
+                int horizontalDiff = second.x - first.x;
+                if (walkingBack) verticalDiff *= -1;
+                if (walkingBack) horizontalDiff *= -1;
+
+                if (verticalDiff > 0)
+                {
+                    //up
+                    resetAnims();
+                    anim.SetBool("movingUp", true);
+                }
+                else if (verticalDiff < 0)
+                {
+                    //down
+                    resetAnims();
+                    anim.SetBool("movingDown", true);
+                }
+                else if (horizontalDiff > 0)
+                {
+                    //right
+                    resetAnims();
+                    anim.SetBool("movingRight", true);
+                }
+                else
+                {
+                    //left
+                    resetAnims();
+                    anim.SetBool("movingLeft", true);
+                }
+                
+            }
+            
+            // CHeck direction
+            // set boolean to where walking
+            
             if (Vector3.Distance(transform.position, pathToDestination[walkingCurrent].worldPos) < 0.001f)
             {
                 if (!walkingBack)
@@ -69,6 +112,14 @@ public class Pathfinding : MonoBehaviour
             }
         }
 
+    }
+
+    public void resetAnims()
+    {
+        anim.SetBool("movingUp", false);
+        anim.SetBool("movingDown", false);
+        anim.SetBool("movingLeft", false);
+        anim.SetBool("movingRight", false);
     }
 
     IEnumerator readyUp()
