@@ -7,9 +7,10 @@ using Random = UnityEngine.Random;
 
 public class CleaningScript : MonoBehaviour
 {
-    public GameObject spacebar;
+    private GameObject spacebar;
     public int cleaningTime = 5;
-    public GameObject cleaned;
+    private GameObject cleaned;
+    private Transform character;
     public Sprite cleanSprite;
     public Sprite dirtySprite;
     private int timeLeft;
@@ -59,7 +60,8 @@ public class CleaningScript : MonoBehaviour
     void Start()
     {
         keyboard = new Dictionary<char, Sprite>();
-
+        spacebar = Resources.Load<GameObject>("Buttons/spacebar");
+        cleaned = Resources.Load<GameObject>("cleaned");
         var keyboardArray = Resources.LoadAll("Buttons/Keyboard", typeof(Sprite)).Cast<Sprite>().ToArray();
         foreach (var key in keyboardArray)
         {

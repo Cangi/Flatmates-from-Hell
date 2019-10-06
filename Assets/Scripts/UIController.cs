@@ -23,11 +23,19 @@ public class UIController : MonoBehaviour
 
     private List<CleaningScript> cleaningScripts;
 
+    private List<Transform> dirtyObjects;
+
+    private Transform character;
+    private Transform closest;
+    public Transform arrow;
+
+
     
     private void Start()
     {
-        
+        character = FindObjectOfType<CameraScript>().gameObject.transform;
         cleaningScripts = new List<CleaningScript>();
+        dirtyObjects = new List<Transform>();
         foreach (Transform child in cleaningObjects.transform)
         {
             cleaningScripts.Add(child.gameObject.GetComponent<CleaningScript>());
@@ -44,6 +52,14 @@ public class UIController : MonoBehaviour
             if (script.isDirty())
             {
                 count++;
+                if (!dirtyObjects.Contains((script.transform)))
+                {
+                    dirtyObjects.Add(script.transform);
+                }
+                else
+                {
+                    dirtyObjects.Remove(script.transform);
+                }
             }
         }
 
@@ -53,7 +69,7 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        float closestDistance = 999f;
         time -= Time.deltaTime;
         minutes = (int)time / 60;
         seconds = (int)time;
@@ -79,7 +95,25 @@ public class UIController : MonoBehaviour
                 SceneManager.LoadScene("Win");
             }
         }
-        
-        
+
+        if (closest == null)
+        {
+            foreach (Transform dirtyObject in dirtyObjects)
+            {
+                if (Vector3.Distance(character.position, dirtyObject.position) < closestDistance)
+                {
+                    closestDistance = Vector3.Distance(character.position, dirtyObject.position);
+                    closest = dirtyObject;
+                }
+            }
+        }
+        else
+        {
+            Vector3 t = character.position - closest.position;
+            arrow.transform.right = closest.position - character.position;
+            
+        }
+
+
     }
 }
