@@ -108,7 +108,7 @@ public class CleaningScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && !cleaning)
             {
                 cleaning = true;
-                GetComponent<AudioSource>().Play();
+                FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().Play();
                 generateKey();
 
             }
@@ -142,7 +142,7 @@ public class CleaningScript : MonoBehaviour
             dirty = false;
             cleanedInstance = Instantiate(cleaned, new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
             GetComponent<SpriteRenderer>().sprite = cleanSprite;
-            GetComponent<AudioSource>().Stop();
+            FindObjectOfType<UIController>().gameObject.GetComponent<AudioSource>().Stop();
             GameObject.Find("Player").GetComponent<UIController>().changeCleanliness();
             aim.notifyCleanedUp(gameObject);
             StartCoroutine(turnOffCleaned());

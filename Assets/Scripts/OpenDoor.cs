@@ -9,10 +9,13 @@ public class OpenDoor : MonoBehaviour
     public Sprite doorClosed;
     private SpriteRenderer spriteR;
     private bool isOpen;
+    private AudioSource audio;
+    public List<AudioClip> sounds;
 
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         spriteR = gameObject.GetComponent<SpriteRenderer>();
         isOpen = false;
     }
@@ -24,6 +27,8 @@ public class OpenDoor : MonoBehaviour
         {
             spriteR.sprite = doorOpened;
             isOpen = true;
+            audio.clip = sounds[Random.Range(0, sounds.Count-1)];
+            audio.Play();
         }
     }
     
