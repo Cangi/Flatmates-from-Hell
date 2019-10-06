@@ -9,6 +9,10 @@ public class Pathfinding : MonoBehaviour
     public List<CustomTile> pathToDestination;
     public BotPathData data;
     private int calculateOnce;
+    private bool walking;
+    private bool walkingBack;
+    private int walkingCurrent;
+    public float botSpeed = 10.0f;
     
     // Start is called before the first frame update
     private void Start()
@@ -19,11 +23,56 @@ public class Pathfinding : MonoBehaviour
     
     void Update()
     {
+        //TEST 
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            walking = true;
+            walkingCurrent = 0;
+            walkingBack = false;
+        }
+        
+        //END TEST
         calculateOnce++;
         if (calculateOnce == 5)
+        {
             CalculateFinalPath(botStartPos.position, botDestPos.position);
-    }   
-    
+            walking = true;
+            walkingBack = false;
+            walkingCurrent = 0;
+        }
+
+        if (walking)
+        {
+            float step =  botSpeed * Time.deltaTime; // calculate distance to move
+            transform.position = Vector3.MoveTowards(transform.position, pathToDestination[walkingCurrent].worldPos, step);
+            if (Vector3.Distance(transform.position, pathToDestination[walkingCurrent].worldPos) < 0.001f)
+            {
+                if (!walkingBack)
+                {
+                    walkingCurrent++;
+                }
+                else
+                {
+                    walkingCurrent--;
+                }
+
+                if (!walkingBack && walkingCurrent == pathToDestination.Count)
+                {
+                    walkingBack = true;
+                    walkingCurrent--;
+                    botDestPos.parent.GetComponent<CleaningScript>().dirtyUp();
+                }
+
+                if (walkingBack && walkingCurrent == -1)
+                {
+                    walkingBack = false;
+                    walking = false;
+                }
+            }
+        }
+
+    }
+
     public void CalculateFinalPath(Vector3 _start, Vector3 _destination)
     {
         List<CustomTile> discoveredTiles = new List<CustomTile>();
@@ -52,6 +101,10 @@ public class Pathfinding : MonoBehaviour
             if (presentTile == dest)
             {
                 GetSequence(current, dest);
+                foreach (var VARIABLE in pathToDestination)
+                {
+                    Debug.Log(VARIABLE.worldPos);
+                }
             }
 
             foreach (CustomTile curNeighbour in data.GetNeighbours(presentTile))

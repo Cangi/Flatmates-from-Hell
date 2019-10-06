@@ -3955,6 +3955,36 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &8834790219283537847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4164310355896989882}
+  m_Layer: 0
+  m_Name: target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4164310355896989882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834790219283537847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -1.52, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9211432094671528112}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &377909040548780761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4027,6 +4057,12 @@ PrefabInstance:
 --- !u!4 &4138798109823055137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4346374648529563640, guid: 182cb2b11c5e946969742847254621c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 377909040548780761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9211432094671528112 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8857189493373336169, guid: 182cb2b11c5e946969742847254621c0,
     type: 3}
   m_PrefabInstance: {fileID: 377909040548780761}
   m_PrefabAsset: {fileID: 0}
