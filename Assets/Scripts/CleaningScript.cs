@@ -24,11 +24,13 @@ public class CleaningScript : MonoBehaviour
     private Dictionary<char, Sprite> keyboard;
     private char randomChar;
     private bool dirty;
+    private UIController uic;
 
     public void dirtyUp()
     {
         dirty = true;
         GetComponent<SpriteRenderer>().sprite = dirtySprite;
+        uic.changeCleanliness();
     }
 
     public bool isDirty()
@@ -69,6 +71,8 @@ public class CleaningScript : MonoBehaviour
         }
 
         timeLeft = cleaningTime;
+
+        uic = GameObject.Find("Player").GetComponent<UIController>();
     }
 
     // Update is called once per frame
@@ -78,12 +82,10 @@ public class CleaningScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             GameObject.Find("stove").GetComponent<CleaningScript>().dirtyUp();
-            GameObject.Find("Player").GetComponent<UIController>().changeCleanliness();
         }
         if (Input.GetKeyDown(KeyCode.RightShift))
         {
             GameObject.Find("bin").GetComponent<CleaningScript>().dirtyUp();
-            GameObject.Find("Player").GetComponent<UIController>().changeCleanliness();
         }
         // END TEST
         

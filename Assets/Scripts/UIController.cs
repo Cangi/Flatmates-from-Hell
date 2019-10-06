@@ -72,7 +72,7 @@ public class UIController : MonoBehaviour
         float closestDistance = 999f;
         time -= Time.deltaTime;
         minutes = (int)time / 60;
-        seconds = (int)time;
+        seconds = (int)time - minutes * 60;
         if (seconds < 10)
         {
             timerText.text = "Time: " + minutes + ":0" + seconds;
