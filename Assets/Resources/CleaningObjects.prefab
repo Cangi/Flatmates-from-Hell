@@ -561,7 +561,6 @@ Transform:
   - {fileID: 4346374648180804417}
   - {fileID: 4346374646602405191}
   - {fileID: 4346374647949267262}
-  - {fileID: 8857189493373336169}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
