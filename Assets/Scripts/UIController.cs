@@ -6,6 +6,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public static class StaticClass
+{
+    public static int crossSceneCleanliness = 0;
+}
+
 public class UIController : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
@@ -97,6 +102,7 @@ public class UIController : MonoBehaviour
 
         cleanLevelText.text = "Clean Level: " + cleanLevel + '%';
 
+        StaticClass.crossSceneCleanliness = cleanLevel;
         if (time<=0)
         {
             if (cleanLevel != 100)

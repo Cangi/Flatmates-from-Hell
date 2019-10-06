@@ -21,6 +21,8 @@ public class IntroScript : MonoBehaviour
             {
                 secondStage = true;
                 GetComponent<Image>().sprite = secondImage;
+                Text tRef = GameObject.Find("LoseText").GetComponent<Text>();
+                tRef.text = "";
             }
             else
             {
