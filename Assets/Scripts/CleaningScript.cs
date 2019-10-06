@@ -42,7 +42,7 @@ public class CleaningScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (dirty)
+        if (dirty && other.gameObject.tag == "Player")
         {
             buttonInstance = Instantiate(spacebar, new Vector3(transform.position.x, transform.position.y, -1),
                 Quaternion.identity);
