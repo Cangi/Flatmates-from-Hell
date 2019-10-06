@@ -26,7 +26,7 @@ public class OpenDoor : MonoBehaviour
         {
             spriteR.sprite = doorOpened;
             isOpen = true;
-            audio.clip = sounds[Random.Range(0, sounds.Count-1)];
+            audio.clip = sounds[Random.Range(0, sounds.Count)];
             audio.Play();
         }
     }
