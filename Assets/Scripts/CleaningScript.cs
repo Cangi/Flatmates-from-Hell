@@ -50,12 +50,17 @@ public class CleaningScript : MonoBehaviour
             buttonInstanceSprite = buttonInstance.GetComponent<SpriteRenderer>();
             pulsating = true;
             inTrigger = true;
+            uic.setArrow(false);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        removeButton();
+        if (other.gameObject.tag == "Player")
+        {
+            uic.setArrow(true);
+            removeButton();
+        }
     }
 
     

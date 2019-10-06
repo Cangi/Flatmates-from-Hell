@@ -39,7 +39,8 @@ public class UIController : MonoBehaviour
     private Transform character;
     private Transform closest;
     public Transform arrow;
-
+    private RawImage arrowImage;
+    private bool arrowShowing = true;
     private void Awake()
     {
         gameObject.AddComponent(typeof(AIManager));
@@ -48,6 +49,7 @@ public class UIController : MonoBehaviour
     
     private void Start()
     {
+        arrowImage = arrow.GetChild(0).GetComponent<RawImage>();
         character = FindObjectOfType<CameraScript>().gameObject.transform;
         cleaningScripts = new List<CleaningScript>();
         dirtyObjects = new List<Transform>();
@@ -57,6 +59,11 @@ public class UIController : MonoBehaviour
         }
     }
 
+    public void setArrow(bool on)
+    {
+        arrowShowing = on;
+    }
+    
     public void changeCleanliness()
     {
         checkDirt();
@@ -132,7 +139,9 @@ public class UIController : MonoBehaviour
 
             if (dirtyObjects.Count > 0)
             {
-                arrow.GetChild(0).GetComponent<RawImage>().enabled = true;
+                arrowImage.enabled = true;
+                Debug.Log("This one!");
+                Debug.Log(arrowShowing);
             }
         }
         else
@@ -141,13 +150,25 @@ public class UIController : MonoBehaviour
             arrow.transform.right = closest.position - character.position;
             if (!closest.GetComponent<CleaningScript>().isDirty())
             {
-                arrow.GetChild(0).GetComponent<RawImage>().enabled = false;
+                arrowImage.enabled = false;
                 dirtyObjects.Remove(closest);
                 closest = null;
                 checkDirt();
             }
         }
-
+        if (!arrowShowing)
+        {
+            arrowImage.enabled = false;
+        }
+        else
+        {
+            if (!arrowImage.enabled && dirtyObjects.Count > 0)
+            {
+                arrowImage.enabled = true;
+                Debug.Log("That one!");
+                Debug.Log(arrowShowing);
+            }
+        }
 
     }
 }

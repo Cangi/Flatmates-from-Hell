@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 5763109629970891840}
   - component: {fileID: 5763109629970891847}
   - component: {fileID: 8193095706882158392}
+  - component: {fileID: 3671570318512952632}
   m_Layer: 0
   m_Name: Radu
   m_TagString: Untagged
@@ -256,6 +257,20 @@ MonoBehaviour:
   botSpeed: 50
   waitMin: 4
   waitMax: 8
+  dust: {fileID: 0}
+--- !u!114 &3671570318512952632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5763109629970891845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7a9b9d2b6c064a4cb5f62600848c0e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: 
 --- !u!1 &9056762017920383857
 GameObject:
   m_ObjectHideFlags: 0

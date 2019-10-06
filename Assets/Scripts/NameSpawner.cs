@@ -13,10 +13,11 @@ public class NameSpawner : MonoBehaviour
     public string charName;
     
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         NameManager nameMan = GameObject.Find("NameManager").GetComponent(typeof(NameManager)) as NameManager;
         charName = nameMan.retrieveName();
+        Debug.Log(charName);
         nameObject = transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
         nameObject.text = charName;
     }

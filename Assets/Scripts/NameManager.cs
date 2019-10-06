@@ -26,6 +26,7 @@ public class NameManager : MonoBehaviour
     public string retrieveName()
     {
         string name = "";
+        Debug.Log(namePool.Count);
         if (namePool.Count > 0)
         {
             int indicator = Random.Range(0, namePool.Count - 1);

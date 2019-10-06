@@ -19,7 +19,6 @@ public class OpenDoor : MonoBehaviour
 
     void OnTriggerEnter2D (Collider2D other)
     {
-        Debug.Log("entered trigger!");
         if (!isOpen)
         {
             spriteR.sprite = doorOpened;

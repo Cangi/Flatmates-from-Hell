@@ -185,10 +185,6 @@ public class Pathfinding : MonoBehaviour
             if (presentTile == dest)
             {
                 GetSequence(current, dest);
-                foreach (var VARIABLE in pathToDestination)
-                {
-                    Debug.Log(VARIABLE.worldPos);
-                }
             }
 
             foreach (CustomTile curNeighbour in data.GetNeighbours(presentTile))
