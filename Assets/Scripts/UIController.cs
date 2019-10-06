@@ -29,6 +29,8 @@ public class UIController : MonoBehaviour
 
     private List<CleaningScript> cleaningScripts;
 
+    public GameObject cleanSlider;
+
    
 
     private List<Transform> dirtyObjects;
@@ -101,6 +103,7 @@ public class UIController : MonoBehaviour
         }
 
         cleanLevelText.text = "Clean Level: " + cleanLevel + '%';
+        cleanSlider.GetComponent<Slider>().value = (float)cleanLevel / 100;
 
         StaticClass.crossSceneCleanliness = cleanLevel;
         if (time<=0)
