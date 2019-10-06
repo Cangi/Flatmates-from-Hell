@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
 
     private List<CleaningScript> cleaningScripts;
 
-   
+    public int winCondition = 90;
 
     private List<Transform> dirtyObjects;
 
@@ -105,7 +105,7 @@ public class UIController : MonoBehaviour
         StaticClass.crossSceneCleanliness = cleanLevel;
         if (time<=0)
         {
-            if (cleanLevel != 100)
+            if (cleanLevel < winCondition)
             {
                 SceneManager.LoadScene("Lose");
             }
