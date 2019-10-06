@@ -29,7 +29,13 @@ public class CleaningScript : MonoBehaviour
         dirty = true;
         GetComponent<SpriteRenderer>().sprite = dirtySprite;
     }
-    
+
+    public bool isDirty()
+    {
+        return dirty;
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (dirty)
@@ -70,10 +76,12 @@ public class CleaningScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             GameObject.Find("stove").GetComponent<CleaningScript>().dirtyUp();
+            GameObject.Find("Player").GetComponent<UIController>().changeCleanliness();
         }
         if (Input.GetKeyDown(KeyCode.RightShift))
         {
             GameObject.Find("bin").GetComponent<CleaningScript>().dirtyUp();
+            GameObject.Find("Player").GetComponent<UIController>().changeCleanliness();
         }
         // END TEST
         
@@ -128,6 +136,7 @@ public class CleaningScript : MonoBehaviour
             dirty = false;
             cleanedInstance = Instantiate(cleaned, new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
             GetComponent<SpriteRenderer>().sprite = cleanSprite;
+            GameObject.Find("Player").GetComponent<UIController>().changeCleanliness();
             StartCoroutine(turnOffCleaned());
         }
     }
